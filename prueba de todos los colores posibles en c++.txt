@@ -1,0 +1,60 @@
+#include<iostream>
+//librerias obligatorias.
+#include<windows.h>
+#define color SetConsoleTextAttribute
+
+using namespace std;
+
+int main () {
+	
+	
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	
+	int p1=0,p2=0,rep1=0,rep2=0;
+	char c1=0,c2=0;
+	for(int i =0; i<=255; i++){
+		
+		
+		cout<<"la combinacion numero "<<i<<" es: ";
+		color(hConsole, i); //existen 255 combinaciones posibles. i representa una de esas combinaciones.
+		
+		/*hacer conversiones de entero a char, esto para facilitar la localisacion del 
+		color y combinacion en la tabla.*/
+		if(p1>=10){
+			
+			c1=p1+55;
+			
+		}else{
+			
+			c1=p1+48;
+			
+		}
+		if(p2>=10){
+			
+			c2=p2+55;
+			
+		}else{
+			
+			c2=p2+48;
+			
+		}
+		//sigue el programa de forma normal
+		cout<<"hola, soy un color, cuya combinacion es: "; color(hConsole, 15); cout<<c1<<c2<<endl;
+		rep1++;
+		p2++;
+		if(rep1>=16){
+			rep2++;
+			if(rep2>=16){
+				
+				rep2=0;
+				
+			}
+			p2=0;
+			p1++;
+			rep1=0;
+		}
+		
+		
+	}
+  return 0;
+}
